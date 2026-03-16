@@ -40,3 +40,29 @@ void prosesPindahSaldo(struct AkunUser db[], int ukuran_db, char* hp_asal, char*
         printf("         Butuh Rp%ld, Saldo Anda Rp%ld.\n", total_potongan, db[idx_asal].balance);
     }
 }
+
+int main() {
+    // Inisialisasi Database
+    struct AkunUser db_telkomsel[2] = {
+        {"08111222333", 100000}, // Akun kamu
+        {"08999888777", 5000}    // Akun temanmu
+    };
+    int jumlah_akun = 2;
+
+    printf("========== TELKOMSEL *858# ==========\n");
+    printf("Info Saldo Awal:\n");
+    printf("- Pengirim : Rp%ld\n", db_telkomsel[0].balance);
+    printf("- Penerima : Rp%ld\n", db_telkomsel[1].balance);
+    printf("=====================================\n\n");
+
+    // Mengeksekusi transfer senilai Rp 15.000
+    printf("Mengeksekusi transfer Rp15000...\n");
+    prosesPindahSaldo(db_telkomsel, jumlah_akun, "08111222333", "08999888777", 15000);
+
+    printf("\n========== UPDATE SALDO ==========\n");
+    printf("- Pengirim : Rp%ld\n", db_telkomsel[0].balance);
+    printf("- Penerima : Rp%ld\n", db_telkomsel[1].balance);
+    printf("==================================\n");
+
+    return 0;
+}
